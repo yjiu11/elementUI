@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.dao.SysBranchMapper">
+
+    <resultMap id="treeMap" type="com.ours.vo.SysBranchTree">
+        <id column="branch_id" property="bid"></id>
+        <result column="branch_name" property="label"></result>
+        <collection property="children" select="getTreeList" column="branch_id"></collection>
+    </resultMap>
+
+    <select id="getTreeList" resultMap="treeMap" parameterType="java.lang.String">
+        select branch_id,branch_name,p_branch_id from sys_branch where p_branch_id = #{bid}
+    </select>
+</mapper>

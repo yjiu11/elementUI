@@ -1,0 +1,42 @@
+db: mfs_element
+server:
+  port: 8084
+  servlet:
+    context-path: /api/v1
+    session:
+      cookie:
+        name: BIUSID
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  servlet:
+    multipart:
+      maxFileSize: 100MB
+      max-request-size: 105MB
+  profiles:
+    active: dev
+    include: druid,mybatisplus,shiro
+  redis:
+    host: localhost
+    port: 6379
+  activiti:
+    database-schema-update: true
+    check-process-definitions: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://119.96.168.198:3306/${db}?characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false
+#    username: mfs_dev
+#    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/${db}?characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: mysqladmin
+logging:
+  path: ./logs
+  level:
+    com.ours.dao: debug
